@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .jam {
+            width: 300px;
+            height: 300px;
+            background-color: #0acfd6;
+            border-radius: 50%;
+            position: relative;
+            transform: translateY(-50%);
+        }
+
+        .waktu {
+            font-size: 60px;
+            color: #ffc107;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .tanggal {
+            font-size: 20px;
+            color: #330404;
+            position: absolute;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+    </style>
+</head>
+<body>
+    <div class="jam">
+        <div class="waktu" id="waktu"></div>
+        <div class="tanggal" id="tanggal"></div>
+    </div>
+
+    <script>
+        function updateWaktu() {
+            let now = new Date();
+            let hours = String(now.getHours()).padStart(2, '0');
+            let minutes = String(now.getMinutes()).padStart(2, '0');
+            let seconds = String(now.getSeconds()).padStart(2, '0');
+
+            let formattedTime = `${hours}:${minutes}:${seconds}`;
+            document.getElementById('waktu').innerText = formattedTime;
+
+            let formattedDate = now.toLocaleDateString();
+            document.getElementById('tanggal').innerText = formattedDate;
+        }
+
+        updateWaktu();
+        setInterval(updateWaktu, 1000);
+    </script>
+</body>
+</html>
